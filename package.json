@@ -1,0 +1,39 @@
+{
+  "name": "vue-ujikel",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:unit": "vitest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "axios": "^1.9.0",
+    "chart.js": "^4.4.9",
+    "datatables.net-bs5": "^2.3.1",
+    "datatables.net-vue3": "^3.0.4",
+    "file-saver": "^2.0.5",
+    "jquery": "^3.7.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
+    "lodash": "^4.17.21",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1",
+    "vue-toast-notification": "^3.1.3",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^26.0.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7",
+    "vite": "^6.2.4",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vitest": "^3.1.1"
+  }
+}
