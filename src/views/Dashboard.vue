@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-page">
-    <h1>Dashboard Perpustakaan</h1>
+    <h1>𝐃𝐚𝐬𝐡𝐛𝐨𝐚𝐫𝐝 𝐏𝐞𝐫𝐩𝐮𝐬𝐭𝐚𝐤𝐚𝐚𝐧</h1>
 
     <div class="stats-box">
       <div class="stat-item">
@@ -56,20 +56,21 @@ export default {
 
 <style scoped>
 .dashboard-page {
-  display: flex;
+  display: 0;
   flex-direction: column;
-  justify-content: center;  /* center vertikal */
-  align-items: center;      /* center horizontal */
-  min-height: 50;
-  max-width: 900;
+  justify-content: 0;
+  align-items: center;
   margin: 0 auto;
 
-  background-color: rgb(8, 0, 159);
 }
 
 h1 {
   color: #000000;
   font-size: 2.5rem;
+  font-weight: bold;
+  display: inline-block; /* Agar border hanya sepanjang teks */
+  border-bottom: 3px solid #000000; /* Garis bawah custom */
+  padding-bottom: 5px; /* Jarak antara teks dan garis */
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -77,17 +78,16 @@ h1 {
 .stats-box {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
   justify-content: center;
+  width: 100%; /* Pastikan mengambil lebar penuh container */
 }
 
 .stat-item {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 1.5rem;
   border-radius: 12px;
-  flex: 1;
-  min-width: 200px;
-  max-width: 300px;
+ flex: 1;
+  max-width: 500px;/* Ini akan membuat semua item memiliki lebar yang sama */
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
   transition: transform 0.2s ease;

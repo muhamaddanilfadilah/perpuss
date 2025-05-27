@@ -1,5 +1,6 @@
 <template>
   <div class="return-page">
+    <h1>  </h1>
     <h1>𝐃𝐚𝐭𝐚 𝐏𝐞𝐧𝐠𝐞𝐦𝐛𝐚𝐥𝐢𝐚𝐧 𝐁𝐮𝐤𝐮</h1>
 
     <div v-if="isLoading" class="loading">Memuat data...</div>
@@ -245,7 +246,7 @@ export default {
       this.showModal = false;
       this.loadingIndex = null;
     },
-async processReturn() {
+async processReturn(id) {
     this.processingReturn = true;
     try {
         const token = localStorage.getItem("token");
@@ -254,7 +255,7 @@ async processReturn() {
 
         // Perbaikan: Ganti this.pengembalian.id dengan this.selectedReturn.id
         await axios.put(
-            `http://45.64.100.26:88/perpus-api/public/api/peminjaman/${this.selectedReturn.id}`,
+            `http://45.64.100.26:88/perpus-api/public/api/peminjaman/pengembalian/  ${this.selectedReturn.id}`,
             {
                 id_buku: this.selectedReturn.id_buku,
                 id_member: this.selectedReturn.id_member,
@@ -325,175 +326,183 @@ async processReturn() {
 
 <style scoped>
 .return-page {
-  padding: 1.5rem;
+  padding-left: 200px;
+  min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.loading {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: #666;
+  position: relative;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #2c3e50;
+  line-height: 1.6;
 }
 
 .return-table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-.return-table th, .return-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .return-table th {
-  background: #f2f2f2;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  padding: 16px;
+  text-align: left;
   font-weight: 600;
+  font-family: 'Georgia', serif;
+  border: none;
+}
+
+.return-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8dcc0;
+  color: #2c3e50;
+}
+
+.return-table tr:last-child td {
+  border-bottom: none;
+}
+
+.return-table tr:nth-child(even) {
+  background: rgba(244, 241, 222, 0.3);
+}
+
+.return-table tr:hover {
+  background: rgba(139, 69, 19, 0.05);
+  transition: background-color 0.2s ease;
 }
 
 .no-data {
   text-align: center;
-  color: #888;
+  color: #7f8c8d;
+  padding: 32px 20px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.1rem;
 }
 
 .status-sudah {
-  color: green;
-  font-weight: 500;
+  color: #27ae60;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  padding: 4px 8px;
+  background: rgba(39, 174, 96, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(39, 174, 96, 0.2);
 }
 
 .status-belum {
-  color: orange;
-  font-weight: 500;
+  color: #e67e22;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  padding: 4px 8px;
+  background: rgba(230, 126, 34, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(230, 126, 34, 0.2);
 }
 
 .text-danger {
-  color: #dc3545;
-  font-weight: 500;
+  color: #e74c3c;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  padding: 4px 8px;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(231, 76, 60, 0.2);
 }
 
 .badge {
   font-size: 0.75rem;
   padding: 0.35em 0.65em;
   border-radius: 0.25rem;
-}
-
-.bg-danger {
-  background-color: #dc3545;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
   color: white;
-}
-
-.ms-2 {
   margin-left: 0.5rem;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
 }
 
 .btn {
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
   border: none;
-  border-radius: 4px;
-  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
 }
 
 .btn:disabled {
-  background-color: #a0c4e8;
+  background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(189, 195, 199, 0.3);
 }
 
 .btn-sm {
-  padding: 4px 8px;
+  padding: 8px 14px;
   font-size: 0.875rem;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-.messages {
-  margin-top: 1rem;
-}
-
-.error {
-  color: #dc3545;
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-}
-.udin {
-  background-color: white;
-}
-
-.success {
-  color: #28a745;
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
-  border-radius: 4px;
-}
-
-.success strong {
-  font-weight: 600;
-}
-
-/* Modal Styles */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.8);
+  backdrop-filter: blur(5px);
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  z-index: 999;
+   padding-top: 20px; /* Tambahkan padding di atas */
+  overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
 }
 
 .modal-content {
-  background: white;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 24px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(139, 69, 19, 0.1);
   max-height: 90vh;
   overflow-y: auto;
+  font-family: 'Georgia', serif;
+    margin-top: 20px; /* Tambahkan margin atas */
 }
 
 .modal-header {
-  padding: 1rem;
-  border-bottom: 1px solid #dee2e6;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #d4c5a9;
 }
 
-.modal-body {
-  padding: 1rem;
-}
-
-.modal-footer {
-  padding: 1rem;
-  border-top: 1px solid #dee2e6;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
+.modal-header h5 {
+  margin: 0;
+  color: #2c3e50;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .close-btn {
@@ -501,30 +510,181 @@ async processReturn() {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: #8b4513;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(139, 69, 19, 0.1);
+  color: #a0522d;
+}
+
+.modal-body p {
+  margin: 8px 0;
+  color: #34495e;
+  line-height: 1.6;
 }
 
 .alert-warning {
-  background-color: #fff3cd;
-  padding: 1rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff3cd 0%, #fef5e7 100%);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: #8b6914;
+  border: 1px solid rgba(139, 105, 20, 0.2);
+  font-family: 'Georgia', serif;
 }
 
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-family: 'Georgia', serif;
 }
 
 .form-select, .form-control {
   width: 100%;
-  padding: 0.375rem 0.75rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid #d4c5a9;
+  margin-bottom: 16px;
+  font-size: 14px;
+  background: #faf8f5;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus, .form-control:focus {
+  outline: none;
+  border-color: #8b4513;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
 }
 
 textarea.form-control {
   min-height: 100px;
+  resize: vertical;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e8dcc0;
+}
+
+.messages {
+  margin-top: 16px;
+}
+
+.error {
+  color: #c62828;
+  font-size: 0.9rem;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
+  border: 1px solid rgba(198, 40, 40, 0.2);
+  border-radius: 8px;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 2px 8px rgba(198, 40, 40, 0.1);
+}
+
+.success {
+  color: #2e7d32;
+  font-size: 0.9rem;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  border-radius: 8px;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.2rem;
+  border-bottom: 3px solid #d4c5a9;
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #5d4e75;
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: #8b4513;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .return-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .return-table {
+    width: 100%;
+  }
+  
+  .return-table th,
+  .return-table td {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+  }
+  
+  .btn {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .return-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .return-table {
+    font-size: 0.8rem;
+  }
+  
+  .return-table th,
+  .return-table td {
+    padding: 6px 8px;
+  }
+  
+  .modal-content {
+    padding: 12px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .status-sudah,
+  .status-belum,
+  .text-danger {
+    padding: 2px 6px;
+    font-size: 0.8rem;
+  }
 }
 </style>
